@@ -1,15 +1,40 @@
-# 15.A prefeitura do Rio de Janeiro abriu uma linha de crédito para seus funcionários. O valor máximo da
-# prestação não poderá ultrapassar 30% do salário bruto. Fazer um programa que permita entrar com o
-# salário bruto e o valor da prestação e informar se o empréstimo pode ou não ser concedido.
+tarefas = []
 
+while True:
+    comando = input("\nADD | DONE | LIST | EXIT: ").upper()
 
+    if comando == "ADD":
+        titulo = input("Título: ")
+        prioridade = int(input("Prioridade (1-5): "))
 
-salario_bruto = float(input("Digite o valor do salário bruto: R$ "))
-valor_prestacao = float(input("Digite o valor da prestação desejada: R$ "))
+        tarefas.append({
+            "titulo": titulo,
+            "prioridade": prioridade,
+            "status": "aberta"
+        })
 
-limite_prestacao = salario_bruto * 0.30
+    elif comando == "DONE":
+        titulo = input("Título: ")
 
-if valor_prestacao <= limite_prestacao:
-    print("Empréstimo CONCEDIDO.")
-else:
-    print("Empréstimo NÃO CONCEDIDO. O valor da prestação ultrapassa 30% do salário bruto.")
+        for tarefa in tarefas:
+            if tarefa["titulo"] == titulo:
+                tarefa["status"] = "concluida"
+
+    elif comando == "LIST":
+        filtro = input("Filtro (aberta/concluida ou Enter): ").lower()
+
+        ordenadas = sorted(tarefas, key=lambda x: x["prioridade"])
+
+        for tarefa in ordenadas:
+            if filtro == "" or tarefa["status"] == filtro:
+                print(
+                    tarefa["titulo"],
+                    "| Prioridade:", tarefa["prioridade"],
+                    "| Status:", tarefa["status"]
+                )
+
+    elif comando == "EXIT":
+        break
+
+    else:
+        print("Comando inválido.")

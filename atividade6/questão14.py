@@ -1,30 +1,27 @@
-# 14.Dado um dicionário de aluno como aluno = {"nome": "Ana", "notas": [6.5, 7.0,
-# 8.0]}, calcule a média e adicione a chave "status" conforme as regras: média >= 7 → "aprovado",
+litros = float(input("Litros: "))
+tipo = input("Combustível (A/G): ").upper()
 
-# média <= 3 → "reprovado", caso contrário → "prova final". Se o aluno tiver alguma nota < 2,
-# marque também a chave "atencao": True; caso contrário, "atencao": False.
+if tipo == "A":
+    preco = 1.90
 
+    if litros <= 20:
+        desconto = 0.03
+    else:
+        desconto = 0.05
 
+elif tipo == "G":
+    preco = 2.50
 
-aluno = {"nome": "Ana", "notas": [6.5, 7.0, 8.0]}
+    if litros <= 20:
+        desconto = 0.04
+    else:
+        desconto = 0.06
 
-
-media = sum(aluno["notas"]) / len(aluno["notas"])
-
-
-if media >= 7:
-    aluno["status"] = "aprovado"
-elif media <= 3:
-    aluno["status"] = "reprovado"
 else:
-    aluno["status"] = "prova final"
+    print("Tipo inválido.")
+    exit()
 
+valor = litros * preco
+valor -= valor * desconto
 
-if min(aluno["notas"]) < 2:
-    aluno["atencao"] = True
-else:
-    aluno["atencao"] = False
-
-
-print(f"Média: {media:.2f}")
-print("Dicionário atualizado:", aluno)
+print("Valor a pagar: R$", round(valor, 2))

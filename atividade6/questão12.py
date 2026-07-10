@@ -1,18 +1,27 @@
-# 12. Entrar com dois números inteiros e efetuar a adição. Caso o valor somado seja maior que 20, este
-# deverá ser apresentado somando-se a ele mais 8; caso o valor somado seja menor ou igual a 20, este
-# deverá ser apresentado subtraindo-se 5.
+import math
 
+area = float(input("Área em m²: "))
 
-numero1 = int(input("Insira um número: "))
-numero2 = int(input("Insira o segundo número: "))
+litros = (area / 6) * 1.10
 
-soma = numero1 + numero2
+latas = math(litros / 18)
+valor_latas = latas * 80
 
+galoes = math(litros / 3.6)
+valor_galoes = galoes * 25
 
-if soma > 20:
-    soma = soma + 8
+latas_mista = int(litros // 18)
+resto = litros - (latas_mista * 18)
+galoes_mista = math(resto / 3.6)
 
-else:
-    soma = soma - 5
+valor_misto = (latas_mista * 80) + (galoes_mista * 25)
 
-print(f"Resultado final: {soma}")
+print("\nApenas latas:")
+print(latas, "latas - R$", valor_latas)
+
+print("\nApenas galões:")
+print(galoes, "galões - R$", valor_galoes)
+
+print("\nMisturado:")
+print(latas_mista, "latas e", galoes_mista, "galões")
+print("Valor: R$", valor_misto)
